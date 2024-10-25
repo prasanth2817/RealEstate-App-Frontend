@@ -16,8 +16,7 @@ const useLogin = () => {
     setLoading(true);
     try {
       const res = await AxiosService.post("/user/login", { email, password });
-console.log(res);
-const data = res.data;
+      const data = res.data;
       // Handle potential error response status
       if (data.error) {
         throw new Error(data.error);
@@ -26,7 +25,7 @@ const data = res.data;
         toast.error(data.error || "Invalid login credentials.");
         return;
       }
-      
+
       if (data.error) {
         throw new Error(data.error);
       }
