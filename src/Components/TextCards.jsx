@@ -16,7 +16,7 @@ function TextCards() {
         <div className="w-full md:w-1/2 overflow-hidden rounded-lg">
           <img
             className="w-full h-80 object-cover transition-transform duration-500 hover:scale-105"
-            src="/Images/section-image-realEstate.png"
+            src="/public/Images/section-image-realEstate.png"
             alt="banner"
           />
         </div>
