@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import AxiosService from "../Common/ApiServices";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -14,9 +15,9 @@ const useLogin = () => {
     if (!success) return;
     setLoading(true);
     try {
-      const { data } = await AxiosService.post("/user/login", { email, password });
-console.log(data);
-
+      const res = await AxiosService.post("/user/login", { email, password });
+console.log(res);
+const data = res.data;
       // Handle potential error response status
       if (data.error) {
         throw new Error(data.error);
