@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function TextCards() {
   return (
@@ -16,7 +16,7 @@ function TextCards() {
         <div className="w-full md:w-1/2 overflow-hidden rounded-lg">
           <img
             className="w-full h-80 object-cover transition-transform duration-500 hover:scale-105"
-            src="../Common/Images/section-image-realEstate.png"
+            src="https://res.cloudinary.com/dlovthlr8/image/upload/v1729895148/section-image-realEstate_fdqhta.png"
             alt="banner"
           />
         </div>
@@ -29,12 +29,11 @@ function TextCards() {
           <h5 className="font-normal text-lg">
             Explore from Apartments, land, builder floors, villas and more
           </h5>
-          <Link to='/allproperties'>
-          <button className="w-6/12 mt-4 px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
-            Explore More
-          </button>
+          <Link to="/allproperties">
+            <button className="w-6/12 mt-4 px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300">
+              Explore More
+            </button>
           </Link>
-          
         </div>
       </div>
     </section>
