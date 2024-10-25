@@ -14,13 +14,13 @@ const useLogin = () => {
     if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      const { data } = await AxiosService.post("/user/login", { email, password });
+console.log(data);
 
-      const data = await res.json();
+      // Handle potential error response status
+      if (data.error) {
+        throw new Error(data.error);
+      }
       if (res.status === 400) {
         toast.error(data.error || "Invalid login credentials.");
         return;
@@ -35,7 +35,6 @@ const useLogin = () => {
       // Decode the token and set the authUser
       const decodedToken = jwtDecode(data.token);
       setAuthUser(decodedToken);
-
       navigate("/home");
 
       toast.success("Login successful!");
