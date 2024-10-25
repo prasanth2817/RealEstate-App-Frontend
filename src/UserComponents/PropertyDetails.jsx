@@ -19,10 +19,10 @@ const PropertyDetails = () => {
       const userId = decodedToken?.id;
       const propertyId = property._id;
 
-      const response = await AxiosService.post(
-        "http://localhost:8000/favorites/create",
-        { propertyId, userId }
-      );
+      const response = await AxiosService.post("/favorites/create", {
+        propertyId,
+        userId,
+      });
       toast.success(response.data.message);
     } catch (error) {
       if (error.response && error.response.data) {

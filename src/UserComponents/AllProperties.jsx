@@ -21,11 +21,9 @@ const AllPropertyListing = () => {
   useEffect(() => {
     const fetchAllProperties = async () => {
       try {
-        const response = await AxiosService.get(
-          "http://localhost:8000/property"
-        );
+        const response = await AxiosService.get("/property");
         setAllProperties(response.data);
-        setFilteredProperties(response.data); 
+        setFilteredProperties(response.data);
       } catch (error) {
         console.error("Error fetching all properties:", error);
       }
@@ -55,7 +53,7 @@ const AllPropertyListing = () => {
     // Filter by search term
     if (searchTerm) {
       filtered = filtered.filter((property) =>
-        property.location.toLowerCase().includes(searchTerm.toLowerCase())      
+        property.location.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
@@ -64,7 +62,7 @@ const AllPropertyListing = () => {
     if (propertyType.length > 0) {
       filtered = filtered.filter((property) =>
         propertyType.includes(property.propertyType)
-      );      
+      );
     }
 
     // Filter by price range
@@ -104,10 +102,11 @@ const AllPropertyListing = () => {
       setPropertyType((prevTypes) => [...prevTypes, value]);
     } else {
       // Remove the property type from the array
-      setPropertyType((prevTypes) => prevTypes.filter((type) => type !== value));
+      setPropertyType((prevTypes) =>
+        prevTypes.filter((type) => type !== value)
+      );
     }
   };
-  
 
   // Reset filters to original state
   const resetFilters = () => {
@@ -243,7 +242,9 @@ const AllPropertyListing = () => {
               <PropertyCard key={index} property={property} />
             ))
           ) : (
-            <p className="w-full text-center text-2xl">No properties found matching the criteria.</p>
+            <p className="w-full text-center text-2xl">
+              No properties found matching the criteria.
+            </p>
           )}
         </div>
       </div>
@@ -252,5 +253,3 @@ const AllPropertyListing = () => {
 };
 
 export default AllPropertyListing;
-
-

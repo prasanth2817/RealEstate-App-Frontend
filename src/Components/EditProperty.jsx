@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import AxiosService from '../Common/ApiServices';
 
 const EditProperty = () => {
   const { id } = useParams();
@@ -18,7 +19,7 @@ const EditProperty = () => {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const response = await axios.get(`/api/properties/${id}`);
+        const response = await AxiosService.put(`/property/${id}`);
         setProperty(response.data);
       } catch (error) {
         console.error("Error fetching property:", error);

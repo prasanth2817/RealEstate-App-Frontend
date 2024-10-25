@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import AxiosService from '../Common/ApiServices';
 
 const CreateProperty = () => {
     const [propertyName, setPropertyName] = useState('');
@@ -29,7 +30,7 @@ const CreateProperty = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8000/property/create', formData, {
+            const response = await AxiosService.post(formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

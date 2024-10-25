@@ -9,10 +9,10 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider = ({ children }) => {
   const [authUser, setAuthUser] = useState(() => {
-    const token = localStorage.getItem("User-token"); // Fetch token from localStorage
+    const token = localStorage.getItem("User-token");
     if (token) {
       try {
-        const decodedToken = jwtDecode(token); // Decode token
+        const decodedToken = jwtDecode(token);
         return decodedToken; // Return user data from token
       } catch (error) {
         console.error("Failed to decode token:", error);
@@ -34,7 +34,7 @@ export const AuthContextProvider = ({ children }) => {
         setAuthUser(null);
       }
     }
-  }, []); // Run when component mounts or token changes
+  }, []);
 
   return (
     <AuthContext.Provider value={{ authUser, setAuthUser }}>

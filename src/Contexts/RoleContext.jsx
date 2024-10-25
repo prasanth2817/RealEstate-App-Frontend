@@ -8,12 +8,12 @@ export const useRoleContext = () => {
 
 export const RoleProvider = ({ children }) => {
   const [role, setRole] = useState(() => {
-    const userRole = sessionStorage.getItem("User-token"); // Get role from sessionStorage
+    const userRole = localStorage.getItem("User-token");
     return userRole || null; // Default to null if not set
   });
 
   useEffect(() => {
-    const userRole = sessionStorage.getItem("User-token"); // Retrieve role when component mounts
+    const userRole = localStorage.getItem("User-token"); // Retrieve role when component mounts
     if (userRole) {
       setRole(userRole);
     }

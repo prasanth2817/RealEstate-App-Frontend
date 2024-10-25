@@ -12,7 +12,7 @@ const PropertyList = () => {
     const fetchProperties = async () => {
       try {
         const response = await AxiosService.get(
-          "http://localhost:8000/property"
+          "/property"
         );
         setProperties(response.data);
       } catch (error) {

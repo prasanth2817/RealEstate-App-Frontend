@@ -13,63 +13,61 @@ function PropertySearch() {
 
   const handleSearch = async () => {
     if (!query && !propertyType && !minPrice && !maxPrice) {
-        toast.error("Please fill in at least one search field.");
-        return;
-      }
-    
-      // Validation for propertyType field if required
-      if (propertyType === "") {
-        toast.error("Please select a property type.");
-        return;
-      }
-    
-      // Validation for price range
-      if (minPrice && maxPrice && Number(minPrice) > Number(maxPrice)) {
-        toast.error("Min price should be less than Max price.");
-        return;
-      }
+      toast.error("Please fill in at least one search field.");
+      return;
+    }
 
-      try {
-        setIsLoading(true);
-        const response = await AxiosService.get(
-          "http://localhost:8000/property/search",
-          {
-            params: {
-              query,
-              propertyType,
-              minPrice,
-              maxPrice,
-            },
-          }
-        );
-        
-        // Check for successful response
-        if (response.status === 200) {
-          navigate("/listings", { state: { properties: response.data } });
-        } else {
-          toast.error(response.data.error || "Unexpected error occurred.");
-        }
-      } catch (error) {
-        // Error handling block
-        if (error.response) {
-          // Check for specific error responses
-          if (error.response.status === 401) {
-            toast.error("Session expired. Please log in again.");
-            localStorage.removeItem("User-token");
-            navigate("/login");
-          } else {
-            toast.error(
-              error.response.data.message || "Error searching properties. Please try again."
-            );
-          }
-        } else {
-          // Handle network errors or other types of errors
-          toast.error("Network error. Please check your connection.");
-        }
-        console.error("Error searching properties:", error);
-      } finally {
-        setIsLoading(false);
+    // Validation for propertyType field if required
+    if (propertyType === "") {
+      toast.error("Please select a property type.");
+      return;
+    }
+
+    // Validation for price range
+    if (minPrice && maxPrice && Number(minPrice) > Number(maxPrice)) {
+      toast.error("Min price should be less than Max price.");
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const response = await AxiosService.get("/property/search", {
+        params: {
+          query,
+          propertyType,
+          minPrice,
+          maxPrice,
+        },
+      });
+
+      // Check for successful response
+      if (response.status === 200) {
+        navigate("/listings", { state: { properties: response.data } });
+      } else {
+        toast.error(response.data.error || "Unexpected error occurred.");
       }
+    } catch (error) {
+      // Error handling block
+      if (error.response) {
+        // Check for specific error responses
+        if (error.response.status === 401) {
+          toast.error("Session expired. Please log in again.");
+          localStorage.removeItem("User-token");
+          navigate("/login");
+        } else {
+          toast.error(
+            error.response.data.message ||
+              "Error searching properties. Please try again."
+          );
+        }
+      } else {
+        // Handle network errors or other types of errors
+        toast.error("Network error. Please check your connection.");
+      }
+      console.error("Error searching properties:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
