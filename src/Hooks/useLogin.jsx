@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { useAuthContext } from "../Contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
-import AxiosService from "../Common/ApiServices";
 
 const useLogin = () => {
   const [loading, setLoading] = useState(false);
@@ -15,10 +14,13 @@ const useLogin = () => {
     if (!success) return;
     setLoading(true);
     try {
-      const res = await AxiosService.get("/user/login", { email, password });
-      const data = res.data;
-      console.log(res.data);
-      
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
       // Handle potential error response status
       if (data.error) {
         throw new Error(data.error);
