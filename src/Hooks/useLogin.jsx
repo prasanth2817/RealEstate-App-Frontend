@@ -15,8 +15,10 @@ const useLogin = () => {
     if (!success) return;
     setLoading(true);
     try {
-      const res = await AxiosService.post("/user/login", { email, password });
+      const res = await AxiosService.get("/user/login", { email, password });
       const data = res.data;
+      console.log(res.data);
+      
       // Handle potential error response status
       if (data.error) {
         throw new Error(data.error);
