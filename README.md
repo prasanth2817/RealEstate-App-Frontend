@@ -22,7 +22,7 @@ This application allows users to search for properties, manage property listings
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/prasanth2817/RealEstate-Listing-Application.git
+git clone https://github.com/prasanth2817/RealEstate-Frontend-Application.git
 cd RealEstate-Listing-Application
 
 Usage
