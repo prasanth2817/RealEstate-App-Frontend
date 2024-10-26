@@ -7,7 +7,7 @@ import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const { authUser, setAuthUser } = useAuthContext();
-  const { role } = useContext(RoleContext);
+  // const { role } = useContext(RoleContext);
 
 
   // const [dropdownOpen, setDropdownOpen] = useState(false);

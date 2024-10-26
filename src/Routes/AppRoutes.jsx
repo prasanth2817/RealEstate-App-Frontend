@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useAuthContext } from "../Contexts/AuthContext";
 import Home from "../Components/Home";
@@ -17,9 +17,10 @@ import AllPropertyListing from "../UserComponents/AllProperties";
 
 function AppRoutes() {
   const { authUser } = useAuthContext();
+  const location = useLocation();
   return (
     <>
-    <Header />
+    {location.pathname !== "/login" && <Header />}
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<Login />} />
