@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import BannerImage from "../Common/Images/section-image-realEstate.png"
 
 function TextCards() {
   return (
@@ -16,7 +17,7 @@ function TextCards() {
         <div className="w-full md:w-1/2 overflow-hidden rounded-lg">
           <img
             className="w-full h-80 object-cover transition-transform duration-500 hover:scale-105"
-            src="https://res.cloudinary.com/dlovthlr8/image/upload/v1729895148/section-image-realEstate_fdqhta.png"
+            src={BannerImage}
             alt="banner"
           />
         </div>
